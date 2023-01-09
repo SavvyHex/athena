@@ -12,3 +12,4 @@ class GameState():
         ]
         self.whiteToMove = True
         self.moveLog = list()
+        self.images = dict()
