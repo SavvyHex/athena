@@ -23,7 +23,7 @@ def main() -> None:
 
 def draw(screen:pg.display, gs:GameState) -> None:
     drawBoard(screen)
-    drawPieces(screen, gs.board)
+    drawPieces(screen, gs)
 
 def drawBoard(screen:pg.display) -> None:
     colours = [pg.Color("white"), pg.Color("gray")]
@@ -31,9 +31,12 @@ def drawBoard(screen:pg.display) -> None:
         for column in range(DIMENSION):
             pg.draw.rect(screen, colours[(row+column)%2], pg.Rect(column*SQUARE_SIZE, row*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
-
-def drawPieces(screen:pg.display, board:list) -> None:
-    pass
+def drawPieces(screen:pg.display, gs:GameState) -> None:
+    for row in range(DIMENSION):
+        for column in range(DIMENSION):
+            piece = gs.board[row][column]
+            if piece != "--":
+                screen.blit(gs.images[piece], pg.Rect(column*SQUARE_SIZE, row*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
 if __name__ == "__main__":
     main()
