@@ -1,3 +1,5 @@
+from utils import load_images
+
 class GameState():
     def __init__(self) -> None:
         self.board = [
@@ -12,4 +14,4 @@ class GameState():
         ]
         self.whiteToMove = True
         self.moveLog = list()
-        self.images = dict()
+        self.images = load_images()
