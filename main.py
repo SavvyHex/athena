@@ -1,6 +1,6 @@
 import pygame as pg
 
-from engine import GameState
+from engine import *
 from settings import *
 
 def main() -> None:
@@ -30,7 +30,10 @@ def main() -> None:
                     square_selected = (row, column)
                     selection.append(square_selected)
                     if len(selection) == 2:
-                        pass
+                        move = Move(selection[0], selection[1], gs.board)
+                        gs.move(move)
+                        square_selected = tuple()
+                        selection = list()
 
         draw(screen, gs)
         clock.tick(FPS)
