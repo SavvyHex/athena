@@ -11,12 +11,27 @@ def main() -> None:
     gs = GameState()
 
     running = True
-
+    square_selected = tuple()
+    selection = list()
+    
     while running:
         for e in pg.event.get():
             if e.type == pg.QUIT:
                 running = False
-        
+    
+            elif e.type == pg.MOUSEBUTTONDOWN:
+                location = pg.mouse.get_pos()
+                column = location[0]//SQUARE_SIZE
+                row = location[1]//SQUARE_SIZE
+                if square_selected == (row, column):
+                    square_selected = tuple()
+                    selection = list()
+                else:
+                    square_selected = (row, column)
+                    selection.append(square_selected)
+                    if len(selection) == 2:
+                        pass
+
         draw(screen, gs)
         clock.tick(FPS)
         pg.display.flip()
