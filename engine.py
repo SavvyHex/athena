@@ -36,4 +36,4 @@ class Move():
         self.piece_captured = board[self.end_row][self.end_column]
 
     def __str__(self) -> str:
-        return f"{self.piece_selected[1]}{self.cols_to_files[self.end_column]}{self.rows_to_ranks[self.end_row]}"
+        return f"{self.piece_selected[1]}{self.cols_to_files[self.start_column]}{self.rows_to_ranks[self.start_row]}-{self.cols_to_files[self.end_column]}{self.rows_to_ranks[self.end_row]}"
