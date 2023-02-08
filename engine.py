@@ -19,8 +19,16 @@ class GameState():
     def move(self, move):
         self.board[move.start_row][move.start_column] = "--"
         self.board[move.end_row][move.end_column] = move.piece_selected
-        self.moveLog.append(str(move))
+        self.moveLog.append(move)
         self.whiteToMove = not self.whiteToMove
+
+    def undo(self):
+        if self.moveLog:
+            move = self.moveLog.pop()
+            self.board[move.end_row][move.end_column] = move.piece_captured
+            self.board[move.start_row][move.start_column] = move.piece_selected
+            self.whiteToMove = not self.whiteToMove
+
 
 class Move():
     ranks_to_rows = {"1" : 7, "2" : 6, "3" : 5, "4" : 4, "5" : 3, "6" : 2, "7" : 1, "8" : 0}
@@ -36,4 +44,4 @@ class Move():
         self.piece_captured = board[self.end_row][self.end_column]
 
     def __str__(self) -> str:
-        return f"{self.piece_selected[1]}{self.cols_to_files[self.start_column]}{self.rows_to_ranks[self.start_row]}-{self.cols_to_files[self.end_column]}{self.rows_to_ranks[self.end_row]}"
+        return f"{self.piece_selected[1]}{self.cols_to_files[self.end_column]}{self.rows_to_ranks[self.end_row]}"

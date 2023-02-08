@@ -35,6 +35,10 @@ def main() -> None:
                         square_selected = tuple()
                         selection = list()
 
+            elif e.type == pg.KEYDOWN:
+                if e.key == pg.K_z:
+                    gs.undo()
+
         draw(screen, gs)
         clock.tick(FPS)
         pg.display.flip()
